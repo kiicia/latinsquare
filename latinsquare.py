@@ -33,11 +33,9 @@ class LatinSquare():
 		'abc\\nbca\\ncab\\n'
 		'''
 		s = ''
-		for row in range(self.side):
-			for col in range(self.side):
-				s += self.value(row,col)
-				if self.last(col):
-					s += '\n'
+		for (row,col) in [(row,col) for row in range(self.side) for col in range(self.side)]:
+			s += self.value(row,col)
+			s += '\n' if self.last(col) else ''
 		return s
 	
 	def _generate(self):
