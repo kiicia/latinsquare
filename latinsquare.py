@@ -95,3 +95,11 @@ class LatinSquare():
 		for (row,col) in [(row,col) for row in range(self.side) for col in range(self.side)]:
 			cur = self.arr[row][col]
 			self.arr[row][col] = v1 if cur == v2 else v2 if cur == v1 else cur
+	
+	def mix(self,rand):
+		for i in range(self.side):
+			self.swap_cols(i,rand(i,self.side))
+			self.swap_rows(i,rand(i,self.side))
+			self.swap_vals(i,rand(i,self.side))
+	
+	
