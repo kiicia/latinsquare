@@ -174,6 +174,10 @@ class LatinSquare():
 		'abc\\ncab\\nbca\\n'
 		>>> s.get('cbaa')
 		'bccc'
+		>>> s.get('cbab')
+		'aacc'
+		>>> s.get('cbac')
+		'aacb'
 		'''
 		return self._get_raw(text)[len(text):]
 	
