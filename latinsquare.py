@@ -102,4 +102,183 @@ class LatinSquare():
 			self.swap_rows(i,rand(i,self.side))
 			self.swap_vals(i,rand(i,self.side))
 	
+	def _reset(self):
+		'''
+		>>> s = LatinSquare(3)
+		>>> s._reset()
+		>>> s.row
+		0
+		>>> s.col
+		0
+		>>> s.prev
+		
+		>>> s.last_c
+		
+		>>> s.by_row
+		False
+		'''
+		self.row = 0
+		self.col = 0
+		self.prev = None
+		self.last_c = None
+		self.by_row = False
+	
+	def find_in_row(self,c):
+		'''
+		>>> s = LatinSquare(3).dictionary(['a','b','c'])
+		>>> s._reset()
+		>>> s.find_in_row('c')
+		2
+		'''
+		for i in range(self.side):
+			if self.value(self.row,i) == c:
+				return i
+	
+	def find_in_col(self,c):
+		'''
+		>>> s = LatinSquare(3).dictionary(['a','b','c'])
+		>>> s._reset()
+		>>> s.find_in_col('b')
+		1
+		'''
+		for i in range(self.side):
+			if self.value(i,self.col) == c:
+				return i
+	
+	def vector(self):
+		'''
+		>>> s = LatinSquare(3)
+		>>> s._reset()
+		>>> s.by_row = True
+		>>> s.prev = 1
+		>>> s.col = 2
+		>>> s.vector()
+		0
+		>>> s.by_row = False
+		>>> s.prev = 1
+		>>> s.row = 0
+		>>> s.vector()
+		2
+		'''
+		cur = self.col if self.by_row else self.row
+		return ((1 if cur > self.prev else -1) + cur)%self.side
+	
+	def get(self,text):
+		'''
+		# a b c
+		# c a b
+		# b c a
+		>>> s = LatinSquare(3).dictionary(['a','b','c'])
+		>>> s.swap_rows(1,2)
+		>>> s.__str__()
+		'abc\\ncab\\nbca\\n'
+		>>> s.get('cbaa')
+		'bccc'
+		'''
+		return self._get_raw(text)[len(text):]
+	
+	def _get_raw(self,text):
+		'''
+		# a b c
+		# c a b
+		# b c a
+		>>> s = LatinSquare(3).dictionary(['a','b','c'])
+		>>> s.swap_rows(1,2)
+		>>> s.__str__()
+		'abc\\ncab\\nbca\\n'
+		>>> s._get_raw('cbaa')
+		'aaccbccc'
+		'''
+		self._reset()
+		result = ''
+		for c in text+text:
+			result += self._get(c)
+		return result
+	
+	def _get(self,c):
+		'''
+		# a b c
+		# c a b
+		# b c a
+		>>> s = LatinSquare(3).dictionary(['a','b','c'])
+		>>> s.swap_rows(1,2)
+		>>> s.__str__()
+		'abc\\ncab\\nbca\\n'
+		>>> s._reset()
+		>>> s.last_c
+		
+		#(a)b<c>
+		# c a b
+		# b c a
+		>>> s._get('c')
+		'a'
+		>>> s.by_row
+		True
+		>>> s.row
+		0
+		>>> s.col
+		2
+		>>> s.prev
+		0
+		>>> s.last_c
+		'c'
+		
+		# a b (c)
+		# c a <b>
+		# b c a
+		>>> s._get('b')
+		'a'
+		>>> s.by_row
+		False
+		>>> s.row
+		1
+		>>> s.col
+		2
+		>>> s.prev
+		0
+		>>> s.last_c
+		'b'
+		
+		# a b c
+		# c<a>b)
+		# b c a
+		>>> s._get('a')
+		'c'
+		>>> s.by_row
+		True
+		>>> s.row
+		1
+		>>> s.col
+		1
+		>>> s.prev
+		2
+		>>> s.last_c
+		'a'
+		
+		# a b c
+		# c(a)b
+		# b c<a>
+		>>> s._get('a')
+		'c'
+		>>> s.by_row
+		False
+		>>> s.row
+		2
+		>>> s.col
+		2
+		>>> s.prev
+		1
+		>>> s.last_c
+		'a'
+		'''
+		self.by_row ^= True
+		same,self.last_c = 1 if self.last_c == c else 0,c
+		if self.by_row:
+			self.row = (same+self.row)%self.side
+			self.prev,self.col = self.col,self.find_in_row(c)
+			return self.value(self.row,self.vector())
+		else:
+			self.col = (same+self.col)%self.side
+			self.prev,self.row = self.row,self.find_in_col(c)
+			return self.value(self.vector(),self.col)
 	
