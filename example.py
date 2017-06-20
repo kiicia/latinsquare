@@ -1,10 +1,10 @@
 from latinsquare import LatinSquare
 from alphabet import chars
-import random
+from passphrase import Passphrase
 
 a = chars('a','z')+chars('0','9')+list('-/:;()$&@".,?!')
 s = LatinSquare(len(a)).dictionary(a)
-s.mix(lambda cur,size: random.randint(cur,size-1))
+s.mix(Passphrase('this/is/test/pa$$phrase',a).gen_lambda())
 print(s)
 for i in range(1,10):
 	input = 'github.com'+str(i)
@@ -13,65 +13,65 @@ for i in range(1,10):
 '''
 example output:
 
-4i@gw:pk$o2qby7tj!h5c&e3()9l;8daxn,"zuf-?1rv0/.sm6
-s-oq".n?h56w2m8y$7)p4jbzv3dkxe&1:/clr!@9ut0a;g,fi(
-vptdjbi)"y.&:o0@wrlm(qx?ck/h8;gse-6$uz1n3f!4792a5,
-g3"7e5?6:li8mh1$xa.k/;yc9,r2@t0&ounb4vwz(jsdf!pq)-
-p$g?!f"e0qtu1&(dr6;w5za:mx)84v3-slo7.2/hb9,ick@njy
-6oa-d8y$q1x9;fzsg3wt2/0l."pj!rnc7mb&k)v5h4?,uie(@:
-)er,4&x@a0wcq7n!vp1;h(gylt2f9/6?d:$sm5zbouik-.j38"
-any&$2-3lm,j.5;o"0kivw:u4?g)exqfb9(h!rt/z@7s8d61pc
-/)w!8ok2x"m7y$aj;v:ln0t,-.zbf1rd@?pec(q36&49su5ghi
-cmf/qx5lj@bget!1&u$o,d8)6h-"079v;p.w3?sikaz(rn:4y2
-"0?b6/7acud29zm3,y4!w.-fjsxvpi:hn8q(@tk;1)o$5eglr&
-;v.@534/i,uo?6"2mw-c0ykd791nhlte)srp&q:agbj8$fzx(!
-yq-h3v&0u9s)4/.n?:!dtkc8@7"r6,l5(j1zexiw;pbo2$amgf
-i"d3r1$x7&@zfqcg!,8jmusb5ek;v4?nahy02.9l:/6p()t-wo
-l;u2(g814!&6drizcms7",9@$f:an-.)/ewvoy?xt35hpbqk0j
-qzl8bpu(.k-ei)th:1,?gxm4dc06oy;j5!/2sa"rv$f&@7nw39
-?:7(awbyf8$vj;90s-@ek4&5)o,tgdczq2l1pi!.mrn3/6"uxh
-h8z.cd;fvrq,g!pu(5a0$6/t"1bs-n2k9xj4yo3e@?mli:&)7w
-5j/kusw8rg1?ad69z20qo3vxy;h7c()i4"@!:bn$e-.m,lfp&t
-,ysng;o"&fe/81uad?j@.97h2$iwr!-(05:q)k4mlv36zpxctb
-:1c5nrfq947p!vk(-ldsxiuje&yg3?m2z@;/$",tw6hb)o0.a8
-j!)x.-r463/:n?ok2@(z&bpaqv8cm5e"i0d,1fh7sltwy;9$ug
-kx!6vqets7j(&0-r4if8lcdoh@.1/9,3gb"a5mu:yzp)n2w?;$
-2@vi97tjga;-0s34/)q1bnr":w5&uzp,!yedlh(o$ck.?m86fx
-bf(m-!1&/v0ir4)cnhgaepzwxqod?35.ut89"$6@j,l:ky72s;
-u.8v1"2m@eha$xd;f9ob?sjp35cyq&4rw6ktn-7,i0/zg(l!:)
-es6yiuadn(rmzch,p$/v853q;g@9k)o:?17-wj2f&."xlt!b40
-842tm?v9p6zy3,$.5jn(7o)g0/f-lh@xka!iq&bsd:w;"1uecr
-9kjr;y).e$50o"sw84bh-7@6n2u:1f!gt3ix(c&?,qv/azmdlp
-@dp"kcg!3nvl(-bi)ez/fh601rju.2$y,qs?;85&7mxt:w4o9a
-7cb1yk(-523t).j:o&p6!@h/rnsi"$f;lvumgde49xq0wa?8,z
-r6xs@h,py:kflbqetgm.z1"-uiv5jwa7$c3o9/;(n8d!&4)02?
-1/mjh69zkic$,px5l;?-a".!suq3b:w@2dv)70ygro8fe&(tn4
-.t4p/0@wds8n7a?v9k&f:-!$bjmqzui6roxghlcy"()235;,1e
-z2;4f$.5txls"eg81/y:3awi?m(o&qv!j,)@-n06p79udchrbk
-d?$0xm3,bhp;5lf"es2)98o(/6!.t@7qyz-:v4jucwag1ri&kn
--l&z0th:8jor@w4q7ce$i!f2pb?xasu/1)m;6,dk.g(nv3y9"5
-0(:fo)cnm.?@k2wbyqi,rtl9!-ap$"18h4z5dgxv/e&7js3;6u
-(519&emhwt:dx@rfqz"y6g;k,ln$70/48i2j?3ap)suc!-bvo.
-3b0csj:o1;"4w8/7antx)vqmky6@dg(u&.hfipr25!-?9,$zel
-wrke2n!v,?9b-3y).tcuq:is&4;(5mx$p7g6f1l0ah@jo8/"zd
-tgi$)(dr?-4hcn:pkxu91l,7f!wz2."o6&a38;mq05e@bjvy/s
-f95wl,/u)p("6iemh83ns$2raz&?:bjt.g4k07od!y;1xqc@-v
-&uh;:izc2)nxpk@lbf63de5vg(7,yo8wmr9.as$!4"1qt0-j?/
-mw9)zaj;!df3sg,/u.7&y?4eo8l0(ckpv$trb:-"xn256h1iq@
-xa,opzsg-c!5u(l6i"94;m?&8dt/)kyb3f0njw.1q2$eh@r:v7
-o&nl?4q7z/akv92-3brg@)(;t0$!,6hmcwfuxepj8i:y."s5d1
-!,eatl6iob)1h:&x@d52uf$nzp4mwjs0"(?y/98c-;grqvk7.3
-nhqu7@lb;wy!tjv&0(x"pr1.i:3esaz9fk58,6g)2dc-4?o/$m
-$73:,90s(zg./u5?6ovrj2n1wae4ipbl-;&ct@)8fky"mxdh!q
+9$4a.8;1f&)6/?mc3ky@rue:0tlph"bgd2-,nsj(5!viwxqo7z
+;-hs:arx3/,$dmg6(9p"1.2!lqtibeuv5c8kfnzj4w&o7?y@)0
+,cd-b$k;sgw2v1xen)ti9h@uj0zq5o4?&"67a83f/.my:rlp!(
+z:c78w0tk@3."ypu9jv5l-haxm?&64$ieb!(,)r;2so/nqgdf1
+:ome/"!76rbi1,kp$.(lw&qdsfnjgtv9xy@uc28-?5;z4)30ha
+lw$,s)ty;ej!2io:r0/hqaunmvgd-b8@c.7z9kx16f"53p&4(?
+upx@vo.!294y;7)qcbfz:gl&8sa3?0m,rtihe"$61/k(dwnj5-
+s5ibehn3:t-dqjz/!armf"v2,9k1og@0y&48.u7wpclx6(;?$)
+3b":6.(z7pshilt4)f?&jcd$;1rme/2qo5unw!k,@-yg80xva9
+n4ou2bf(!q85yz0dws1g3e&ck;9x@v"lp/ha:.)7i6t?$jrm-,
+5l9yxq4bo7&0).:z@d8fh1(?c$6a;3r!,jt/ipe"kmwsgu-nv2
+-&q5od8sbzcv0f3gu$k1ai?@w)79yxp(lm/6h4:.t"j;en,r2!
+d0kq1t5hiwvz7u.jo/-n4r3x26c89f;:)(l&py"@,?!amb$sge
+t7-kn,qpr2zwco@!1ldbys.fg&v58ua"6:)0;9?x$3e4(i/hjm
+2?zvqgc$df@x38a15ewk6t;yu:.709ls(rm"/&h4jpn)i-!,ob
+6gl/p&$84(emjsn?hc);-y1i:w!,trqfzxv25dub0o3k@a79".
+!@g2dew)$1uoxk9i-:jt7/y5n3fzvq&;?p".6ca8m4r0h,(lbs
+.i?"&@:wc;hpr),y6u30!vt/ans(mlgk1qob2e-$xd9j57fz48
+r8bn!s1?(dk-5gv$j;iex:cwtyqou2.&46a93f0zh7/@)mp",l
+"1(ml?ec&sirn$-;/@:)20kthub!j,z8f9xovg5d3qawy6.7p4
+by1ogiu:ek5q9w7t2hnj.m0v-a8fxz?);lp4"@6cr&,3/!s(d$
+w"vc527,-x.@?9;o8!zq)dp4f(30&y/rmie:$6sagh1lbkjtun
+exjgtm26/no1f-8rd"!,cl9qb.uwzk0a3;?@&v45(ys7p$:)ih
+v(709z&dq.?3:4hfygc8/ks;@e"6)a,b!njmtlipwru$152-xo
+k658u-9rnv7c&x?2f,qo;b".zl0y4@hm/e$)sa(3d:gp!1tiwj
+cm0&yv6-53"?(asx4279$qrp.!:)l;tnj1ged/bhzif,o8wk@u
+8/y4@5anu06&l3(v.-9xsom"7,);p?ijtgd$bh!:qezr2fk1cw
+1aufwnxmj5984v&-zro2?!67qpy@.c:/h$s;(3l0b)d",giekt
+fh@.cu3jwya4p0l57nxv(2/69r;?"&etidbs!:,)o$qm-z1g8k
+q)89fkyi1c076@"wxt5upn:3v/&4a.se$!,lr;m?-(2hjodbzg
+j.2w-!zl,ofu@qybk(gd0$481?xvc56p"h:3)7;9eai&stm/nr
+g3wzkjv/tuxf.54nqm2-&,a9o"@c78)h:s(?l0py!;b6rde$1i
+4t;p?yhu@)/l,:!0"5a3bxjm6-$sr(1wkzqdoi2e9g7nv.8f&c
+i9n1jro"m-qk82c,gpb!@(7zd45ufw36a);y?x&vs0$.leh:t/
+&j)l;0/5y:m(!hb3pv6ad9nr"2e$,skuwfzgqtoi71.-x4c8?@
+o;fxz1@eg8y9ac6kviuw"j)05h4.37($s,rpm?/&nl-:t2b!qd
+7e&64c)k8?:"m;r@aw0y,5ih3j(l/pd1go2!-$nsvbxtu9zq.f
+$vtdi/-ahj2gznfmb6,r8pxo!7wkq1y30?&c45.ul@(9"s);e:
+adph"4sf.l$/t(j&:8;?n@ge)k,rimozqv5-ubw!y201c39x67
+@r3?0x"2vap;s6$9&o.7ez,l4bh:()j-nk1igmd/ft8!qcuwy5
+)2/$h6,9am!egr1"s7lpk4ob(zjtdi5xv@cw8-fn&u?q.;0y:3
+0!6)a7lq9"(:epi.;z&4t8bs?gm/$h-o2uwjk,1rcn@dfyv53x
+hqrimpb.",dtk!wle4s(u?zg$8-n1jx790y5@oc2;v)f&:a3/6
+?n:()3mv0hrsb/dalx"6g7-,poie!$w5u8f1zjqt.k429&@c;y
+xs.37f?gz4;ah&/801@cmw$)yip":6!db-nrj(tlu,5ekvo29q
+pksr(;i@?$t,-e2)myh:o3wj/5dbn!fc879qx1vgaz6u0"4.l&
+(ue!$:j0)inbotqh,3m/z65-rx1g2dcy@4.f7w9k"8pval?&s;
+y,a;39pox6l)$"e7?q4.if!(&d/hs:n2-wkt1rgm8jcbz@5u0v
+mf!j,(g&lb1nud5st?e$v)8ki@o2w-74.a3x0zyq:9hc;/"6rp
+/z,trld4p!gjwbu(i&$s5;f1ec2-kn9.730vyq@o)x:8?h6am"
 
-github.com1 @u:n?1ot87k
-github.com2 r6$-j:1k27g
-github.com3 n&aa-4rzhk1
-github.com4 v2ynv@6k8@$
-github.com5 6q9edj:zm(r
-github.com6 /(a7y9m@dnq
-github.com7 "c0fk51-zz5
-github.com8 f4wmi:4kb5p
-github.com9 f?5we?-3,je
+github.com1 "pvawln8xx4
+github.com2 etj!"i9ux/3
+github.com3 ch?e04(,z)i
+github.com4 /90,"vw,we,
+github.com5 uw(gno;7m4)
+github.com6 05pj5hel4ej
+github.com7 ludi"x2r("m
+github.com8 z?y4a0"z?tl
+github.com9 2h@:$h382p/
 '''
 
